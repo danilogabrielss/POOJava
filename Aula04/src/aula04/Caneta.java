@@ -10,7 +10,7 @@ public class Caneta {
         this.modelo = modelo;
         this.ponta = ponta;
         this.cor = cor;
-    }
+    }   
 
     public String getModelo() {
         return modelo;
