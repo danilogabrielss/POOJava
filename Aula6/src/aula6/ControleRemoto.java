@@ -48,28 +48,38 @@ public class ControleRemoto implements Controlador {
     @Override
     public void desligar() {
         this.setLigado(false);
+        this.setVolume(0);
     }
 
     @Override
     public void abrirMenu() {
-        System.out.println("-------MENU-------");
-        System.out.println("Esta ligado? " + this.getLigado());
-        System.out.println("Esta tocando? " + this.getTocando());
-        System.out.print("Volume: " + this.getVolume());
-        for (int i = 0; i <= this.getVolume(); i += 10) {
-            System.out.print("|");
+        if (this.getLigado()) {
+            System.out.println("-------MENU-------");
+            System.out.println("Esta ligado? " + this.getLigado());
+            System.out.println("Esta tocando? " + this.getTocando());
+            System.out.print("Volume: " + this.getVolume());
+            for (int i = 0; i <= this.getVolume(); i += 10) {
+                System.out.print("|");
+            }
         }
     }
 
     @Override
     public void fecharMenu() {
-        System.out.println("Fechando menu...");
+        if (this.getLigado()) {
+            System.out.println("Fechando menu...");
+        }
+        else{
+            System.out.println("ERRO! A TV não esta ligada.");
+        }
     }
 
     @Override
     public void maisVolume() {
         if (this.getLigado()) {
             this.setVolume(this.getVolume() + 1);
+        } else {
+            System.out.println("Impossivel aumentar volume!");
         }
     }
 
@@ -77,6 +87,8 @@ public class ControleRemoto implements Controlador {
     public void menosVolume() {
         if (this.getLigado() && this.getVolume() > 0) {
             this.setVolume(this.getVolume() - 1);
+        } else {
+            System.out.println("Impossivel diminuir volume!");
         }
     }
 
@@ -84,6 +96,9 @@ public class ControleRemoto implements Controlador {
     public void ligarMudo() {
         if (this.getLigado() && this.getVolume() > 0) {
             this.setVolume(0);
+        }
+        else{
+            System.out.println("ERRO! A TV não esta ligada");
         }
     }
 
